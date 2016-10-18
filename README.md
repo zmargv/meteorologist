@@ -2,27 +2,23 @@
 
 ## Setup
 
- - Clone this repository.
- - **Create a branch for your work.**
- - In Terminal, `cd` to the folder that you just downloaded.
+ - Fork this repository to your own account.
+ - Clone your fork (Open in Desktop).
+ - In Terminal, `cd` into the folder that you just downloaded.
  - `bundle install`
  - Open up the entire folder in Atom.
  - `rails s`
  - Go to [http://localhost:3000](http://localhost:3000) in Chrome.
- 
-## Getting Started video
-
-You'll find a very brief Getting Started video for this project in Canvas under **Pages**. You should still read this README thoroughly.
 
 ## Introduction
 
 In this project, you will practice working with Arrays and Hashes by pulling data from external services like Google Maps. You will build an application that, given a street address, tells the user the weather forecast.
 
-[Here is a functional version of the app -- this is your target.](https://meteorologist.herokuapp.com/)
+#### [Here is a functional version of the app -- this is your target.](https://meteorologist.herokuapp.com/)
 
 In order to achieve this, our first task will be to exchange a **street address** for a **latitude/longitude pair** using Google's Geocoding API.
 
-We will send a location in a remarkably flexible, "English-y" format, the kind of thing we are allowed to type into a Google Maps search (e.g., "the corner of Foster and Sheridan"), and the Geocoding API will respond with an exact latitude and longitude (along with other things) in JSON format.
+We will send a location in a remarkably flexible, "English-y" format, the kind of thing we are allowed to type into a Google Maps search (e.g., "the corner of 58th and Woodlawn"), and the Geocoding API will respond with an exact latitude and longitude (along with other things) in JSON format.
 
 ### Getting Started
 
@@ -58,6 +54,8 @@ I folded away the `address_components` section to make the value of the `geometr
 
 Alright, now that we have the data we need showing up in the browser window, what's next? First of all, we should be sure that we can customize this example request to get data that we care about. So how would we get the coordinates of "the corner of Foster and Sheridan"? Give it a try.
 
+---
+
 It turns out we need to replace the part of the URL between the `?address=` and the `&` with the address we want Geocoded, but with one catch: spaces are not legal in URLs, so we have to **encode** them. One way to encode them can be seen in Google's example, with `+`s, so the following works:
 
 <img src='http://ask.initialversion.com/uploads/default/71/38b10fea87e76ce9.png' width="690" height="412">
@@ -68,9 +66,9 @@ Great! Now we know the exact data we want is available through the API. Now, how
 
 Fire up a Rails Console session:
 
+ - Open a new Terminal window (since the old one is busy running the web server).
  - `cd` in to the root folder of this application.
  - `rails console` (or `rails c` for short)
-
 
 Enter the following command: `require 'open-uri'`. This command loads a method called `open` from the Ruby Standard Library (which is part of Ruby but isn't loaded up by default because not every single Ruby script needs to open Internet pages). The `open` method takes one argument: a String containing a URL.
 
@@ -94,11 +92,7 @@ Let's start to explore it:
 
 That's a little nicer to look at. But still, it's going to be quite hard to get to the latitude and longitude. We could explore the [String][1] class documentation and find some methods that might help us scan through `raw_data` for `"lat"`, perhaps. But then what? We could probably figure it out, but there's a much better way.
 
-Let's borrow some more code. First run the command
-
-    require 'json'
-
-and then
+Fortunately, Ruby provides a class called `JSON`, similar to the `CSV` class, which makes parsing a string that has data in JSON format a snap:
 
     parsed_data = JSON.parse(raw_data)
 
@@ -114,7 +108,7 @@ Look! Hash rockets! We've converted a cumbersome JSON string into a beautiful, f
 
 <img src='http://ask.initialversion.com/uploads/default/76/cf85a534e4842664.png' width="690" height="415">
 
-It doesn't look very much better, but we're closer to our goal. What class of object is in `results`? It's no longer a Hash; we can tell both in IRB and from looking at JSONView that it is an Array. Let's go one level deeper by getting the first element:
+It doesn't look very much better, but we're closer to our goal. What class of object is in `results`? It's no longer a Hash; we can tell both in Rails Console and from looking at JSONView that it is an Array. Let's go one level deeper by getting the first element:
 
 <img src='http://ask.initialversion.com/uploads/default/77/7a9c1a6fd8971b86.png' width="690" height="415">
 
@@ -252,7 +246,11 @@ Finally, pull it all together in `app/controllers/meteorologist_controller.rb`. 
 
 ## Submission
 
-Remember to commit and sync your work often, so that it will be easy for us to see what's up if you need help. Create a Pull Request when you are ready for feedback. **And ask lots of questions!** Really. Ask early and often.
+Remember to Commit and Sync your work often, so that it will be easy for us to see what's up if you need help.
+
+This project includes `rake grade`, so run that when you are ready to see how you are doing. Run it at least once, after you are done working, so we can see your grade too.
+
+ **And ask lots of questions!** Really. Ask early and often.
 
 Good luck!
 

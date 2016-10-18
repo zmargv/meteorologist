@@ -3,7 +3,7 @@ require 'open-uri'
 class ForecastController < ApplicationController
   def coords_to_weather_form
     # Nothing to do here.
-    render("coords_to_weather_form.html.erb")
+    render("forecast/coords_to_weather_form.html.erb")
   end
 
   def coords_to_weather
@@ -28,6 +28,6 @@ class ForecastController < ApplicationController
 
     @summary_of_next_several_days = "Replace this string with your answer."
 
-    render("coords_to_weather.html.erb")
+    render("forecast/coords_to_weather.html.erb")
   end
 end
