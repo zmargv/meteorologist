@@ -33,6 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development do
   gem "better_errors"
   gem "binding_of_caller"
+  gem "web-console"
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
