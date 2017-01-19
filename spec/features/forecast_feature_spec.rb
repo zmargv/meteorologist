@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe 'Forecast feature', type: :feature do
+RSpec.describe 'Forecast:', type: :feature do
 
-  describe "GET /coords_to_weather/new" do
+  describe "coords to weather" do
     before do
       visit "/coords_to_weather/new"
       fill_in "Latitude", with: @lat
@@ -10,12 +10,12 @@ RSpec.describe 'Forecast feature', type: :feature do
       click_button "Lookup Weather"
     end
 
-    context 'Main Exercise' do
-      it "displays the Latitude from :user_latitude params", points: 0 do
+    context 'results page' do
+      it "displays the latitude", points: 0 do
         expect(page).to have_content @lat
       end
 
-      it "displays the Longitude from :user_longitude params", points: 0 do
+      it "displays the longitude", points: 0 do
         expect(page).to have_content @lng
       end
 

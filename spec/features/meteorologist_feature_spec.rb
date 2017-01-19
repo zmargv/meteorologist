@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe 'Meteorologist feature', type: :feature do
+RSpec.describe 'Meteorologist:', type: :feature do
 
-  describe "GET /street_to_weather/new" do
+  describe "street to weather" do
     before do
       visit "/street_to_weather/new"
       fill_in "Street Address", with: @address
       click_button "Tell me the weather!"
     end
 
-    context 'Main Exercise' do
+    context 'results page' do
       it "displays the street address", points: 0 do
         expect(page).to have_content(/#{@address}/i)
       end

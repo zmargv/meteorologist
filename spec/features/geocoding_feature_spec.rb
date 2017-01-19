@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe 'Geocoding feature', type: :feature do
+RSpec.describe 'Geocoding:', type: :feature do
 
-  describe "GET /street_to_coords/new" do
+  describe "street to coords" do
     before do
       visit "/street_to_coords/new"
       fill_in "Street Address", with: @address
       click_button "Lookup Coordinates"
     end
 
-    context 'Main Exercise' do
+    context 'results page' do
       it "displays the street address", points: 0 do
         expect(page).to have_content(/#{@address}/i)
       end
