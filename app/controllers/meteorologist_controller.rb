@@ -8,13 +8,11 @@ class MeteorologistController < ApplicationController
 
   def street_to_weather
     @street_address = params[:user_street_address]
-    @street_address_without_spaces = URI.encode(@street_address)
 
     # ==========================================================================
     # Your code goes below.
-    # The street address the user input is in the variable @street_address.
-    # A URL-safe version of the street address, with spaces and other illegal
-    #   characters removed, is in the variable @street_address_without_spaces.
+    #
+    # The street address that the user typed is in the variable @street_address.
     # ==========================================================================
 
 
