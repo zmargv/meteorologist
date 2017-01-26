@@ -1,5 +1,7 @@
 # Meteorologist
 
+## There is a Getting Started video on Canvas. Go watch that first.
+
 ## Setup
 
  - Fork this repository to your own account.
