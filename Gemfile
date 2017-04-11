@@ -35,6 +35,7 @@ group :development do
   gem "binding_of_caller"
   gem "web-console"
   gem "awesome_print"
+  gem "pry-rails"
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
