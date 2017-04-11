@@ -84,7 +84,7 @@ open(url).read
 
 ### Note: Your `rails console` may look slightly different than the screenshots below. You might have a different prompt, colored output, and better indentation if you are using a more powerful version called Pry.
 
-### Important: To scroll through multipage output in `rails console`, you can use <kbd>return</kbd> to scroll one line at a time, <kbd>Space</kbd> to scroll one page at a time, or <kbd>Q</kbd> to just get back to the prompt to enter a new Ruby expression.
+### Important: To scroll through long output in `rails console`, you can use <kbd>return</kbd> to scroll one line at a time, <kbd>Space</kbd> to scroll one page at a time, or <kbd>Q</kbd> to just get back to the prompt to enter a new Ruby expression.
 
 <img src='http://ask.initialversion.com/uploads/default/72/8dbad5066edefcda.png' width="690" height="411">
 
@@ -140,7 +140,7 @@ latitude = parsed_data["results"][0]["geometry"]["location"]["lat"]
 longitude = parsed_data["results"][0]["geometry"]["location"]["lng"]
 ```
 
-Now that we've explored in the console, it's time to write some permanent programs...
+Now that we've explored in the console, it's time to take these three lines (or something like them, anyway) and write some permanent programs...
 
 ## Part 1: Street &rarr; Coords
 
