@@ -72,17 +72,27 @@ Fire up a Rails Console session:
  - `cd` in to the root folder of this application.
  - `rails console` (or `rails c` for short)
 
-Enter the following command: `require 'open-uri'`. This command loads a method called `open` from the Ruby Standard Library (which is part of Ruby but isn't loaded up by default because not every single Ruby script needs to open Internet pages). The `open` method takes one argument: a String containing a URL.
+Enter the following command: `require 'open-uri'`. This command loads a method called `open` from the Ruby Standard Library (which is part of Ruby but isn't loaded up by default because not every single Ruby script needs to open Internet pages). If the command returns `false`, don't worry; that just means that you already have it loaded.
 
-Create a variable called `url` and store within it a String containing the URL we discovered that has the data we want. Copy the URL directly from the address bar of your Chrome tab. Then, pass that variable as an argument to the `open` method:
+The `open` method takes one argument: a String containing the URL of a page on the internet.
 
-    open(url)
+Create a variable called `url` (or whatever you want) and store within it a String containing the URL we discovered that has the data we want. Copy the URL directly from the address bar of your Chrome tab. Then, pass that variable as an argument to the `open` method:
+
+```ruby
+open(url).read
+```
+
+### Note: Your `rails console` may look slightly different than the screenshots below. You might have a different prompt, colored output, and better indentation if you are using a more powerful version called Pry.
+
+### Important: To scroll through multipage output in `rails console`, you can use <kbd>return</kbd> to scroll one line at a time, <kbd>Space</kbd> to scroll one page at a time, or <kbd>Q</kbd> to just get back to the prompt to enter a new Ruby expression.
 
 <img src='http://ask.initialversion.com/uploads/default/72/8dbad5066edefcda.png' width="690" height="411">
 
 What just happened? We `open`ed the page at `url`, and the return value was the HTTP response. The HTTP response is actually a complicated object, with headers and status codes and other things we haven't talked about yet. All we really want is the body of the response, the stuff that shows up in the browser window, so let's use the `.read` method to pull that out; and also, let's store the result in a variable called `raw_data`:
 
-    raw_data = open(url).read
+```ruby
+raw_data = open(url).read
+```
 
 <img src='http://ask.initialversion.com/uploads/default/73/e2072db64c77b1f6.png' width="690" height="411">
 
@@ -124,9 +134,13 @@ Woo! We made it all the way down to what we want. Phew! Now, I did it in a bunch
 
 I prefer working in small steps and peeling one layer off at a time while I am exploring. But, the entire program boils down to just three lines!
 
-    parsed_data = JSON.parse(open(url).read)
-    latitude = parsed_data["results"][0]["geometry"]["location"]["lat"]
-    longitude = parsed_data["results"][0]["geometry"]["location"]["lng"]
+```ruby
+parsed_data = JSON.parse(open(url).read)
+latitude = parsed_data["results"][0]["geometry"]["location"]["lat"]
+longitude = parsed_data["results"][0]["geometry"]["location"]["lng"]
+```
+
+Now that we've explored in the console, it's time to write some permanent programs...
 
 ## Part 1: Street &rarr; Coords
 
