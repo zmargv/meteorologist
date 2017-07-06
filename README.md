@@ -4,13 +4,12 @@
 
 ## Setup
 
- - Fork this repository to your own account.
- - Clone your fork (Open in Desktop).
- - In Terminal, `cd` into the folder that you just downloaded.
- - `bundle install`
- - Open up the entire folder in Atom.
- - `rails s`
- - Go to [http://localhost:3000](http://localhost:3000) in Chrome.
+ - Ensure that this repo has been forked to your own GitHub account.
+ - Set up [a Cloud9 workspace as usual](https://guides.firstdraft.com/getting-started-with-cloud-9.html).
+ - `bin/setup`
+ - Run Project.
+ - Go to the live app in Chrome.
+ - As you work, use the [Continuous Integration](https://guides.firstdraft.com/continuous-integration.html) workflow to save and submit.
 
 ## Introduction
 
@@ -42,11 +41,11 @@ https://developers.google.com/maps/documentation/geocoding/
 
 but, as usual with technical documentation, it's best once you skim the intro to head straight for the examples:
 
-https://developers.google.com/maps/documentation/geocoding/#GeocodingResponses
+https://developers.google.com/maps/documentation/geocoding/start#geocoding-request-and-response-latitudelongitude-lookup
 
 The first example they give is
 
-    http://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA
+[https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA](https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA)
 
 (I have removed the part about the API key from the end of the URL; we don't need one, for now.) Paste that URL into a Chrome tab; you should see something like this:
 
@@ -68,27 +67,30 @@ Great! Now we know the exact data we want is available through the API. Now, how
 
 Fire up a Rails Console session:
 
- - Open a new Terminal window (since the old one is busy running the web server).
- - `cd` in to the root folder of this application.
+ - Open a Terminal window (click the circled green + in Cloud9).
  - `rails console` (or `rails c` for short)
 
 Enter the following command: `require 'open-uri'`. This command loads a method called `open` from the Ruby Standard Library (which is part of Ruby but isn't loaded up by default because not every single Ruby script needs to open Internet pages). If the command returns `false`, don't worry; that just means that you already have it loaded.
 
 The `open` method takes one argument: a String containing the URL of a page on the internet.
 
-Create a variable called `url` (or whatever you want) and store within it a String containing the URL we discovered that has the data we want. Copy the URL directly from the address bar of your Chrome tab. Then, pass that variable as an argument to the `open` method:
+Create a variable called `url` (or whatever you want) and store within it a String containing the URL we discovered that has the data we want. (Don't forget the double-quotes around your string!)
+
+Copy the URL directly from the address bar of your Chrome tab. Then, pass that variable as an argument to the `open` method:
 
 ```ruby
 open(url).read
 ```
 
-### Note: Your `rails console` may look slightly different than the screenshots below. You might have a different prompt, colored output, and better indentation if you are using a more powerful version called Pry.
+### Note: Your `rails console` will look different than the screenshots below. You might have a different prompt, colored output, and better indentation since you are using a more powerful version called Pry.
 
 ### Important: To scroll through long output in `rails console`, you can use <kbd>return</kbd> to scroll one line at a time, <kbd>Space</kbd> to scroll one page at a time, or <kbd>Q</kbd> to just get back to the prompt to enter a new Ruby expression.
 
 <img src='http://ask.initialversion.com/uploads/default/72/8dbad5066edefcda.png' width="690" height="411">
 
-What just happened? We `open`ed the page at `url`, and the return value was the HTTP response. The HTTP response is actually a complicated object, with headers and status codes and other things we haven't talked about yet. All we really want is the body of the response, the stuff that shows up in the browser window, so let's use the `.read` method to pull that out; and also, let's store the result in a variable called `raw_data`:
+What just happened? We `open`ed the page at `url`, and the return value was the HTTP response. The HTTP response is actually a complicated object, with headers and status codes and other things we haven't talked about yet.
+
+All we really want is the body of the response, the stuff that shows up in the browser window, so we used the `.read` method to pull that out. However, we just dropped that string on the ground; let's instead store the result in a variable called `raw_data`:
 
 ```ruby
 raw_data = open(url).read
@@ -262,9 +264,7 @@ Finally, pull it all together in `app/controllers/meteorologist_controller.rb`. 
 
 ## Submission
 
-Remember to Commit and Sync your work often, so that it will be easy for us to see what's up if you need help.
-
-This project includes `rake grade`, so run that when you are ready to see how you are doing. Run it at least once, after you are done working, so we can see your grade too.
+Remember to make lots of commits as you work. Use the [Continuous Integration](https://guides.firstdraft.com/continuous-integration.html) workflow as usual to open a Pull Request to submit your work.
 
  **And ask lots of questions!** Really. Ask early and often.
 
