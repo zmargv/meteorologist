@@ -236,6 +236,19 @@ If I type in `41.78` and `-87.59` at the [Coords &rarr; Weather form](http://loc
 </dl>
 </blockquote>
 
+**Note: Forecast does not have data for every lat/lng combination; some geographies will return `nil`s.** If you run into issues, you can try Ruby 2.3's handy new `Hash#dig` method:
+
+```ruby
+parsed_results.dig("minutely", "summary")
+```
+
+rather than
+
+```ruby
+parsed_results["minutely"]["summary"]
+```
+
+The latter, if `parsed_results["minutely"]` is `nil`, will throw an error complaining that you can't do `nil["summary"]`. The former will handle the issue more gracefully. [Read more in this StackOverflow thread.](https://stackoverflow.com/questions/34346653/how-do-i-use-arraydig-and-hashdig-introduced-in-ruby-2-3)
 
 ## Part 3: Address to Weather
 
