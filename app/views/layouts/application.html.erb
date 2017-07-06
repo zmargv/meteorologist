@@ -7,7 +7,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
   <nav>
     <ul>
       <li><a href="/street_to_coords/new">Street &rarr; Coords</a></li>
@@ -16,7 +15,9 @@
     </ul>
   </nav>
 
-  <%= yield %>
+  <div class="container">
+    <%= yield %>
+  </div>
 
   <div class="rails-toolbar">
     <a href="/rails/git" target="_blank" class="rails-toolbar-button">
