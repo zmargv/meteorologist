@@ -30,6 +30,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+group :development, :test do
+  gem "grade_runner", github: "firstdraft/grade_runner"
+  gem "web_git", github: "firstdraft/web_git"
+  gem "dotenv-rails"
+end
+
 group :development do
   gem "better_errors"
   gem "binding_of_caller"

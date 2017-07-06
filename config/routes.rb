@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   get("/street_to_weather/new", { :controller => "meteorologist", :action => "street_to_weather_form" })
   get("/street_to_weather", { :controller => "meteorologist", :action => "street_to_weather" })
 
+  mount WebGit::Engine, at: "/rails/git"
 end
