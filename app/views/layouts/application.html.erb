@@ -8,15 +8,20 @@
 </head>
 <body>
 
-<nav>
-  <ul>
-    <li><a href="/street_to_coords/new">Street &rarr; Coords</a></li>
-    <li><a href="/coords_to_weather/new">Coords &rarr; Weather</a></li>
-    <li><a href="/street_to_weather/new">Street &rarr; Weather</a></li>
-  </ul>
-</nav>
+  <nav>
+    <ul>
+      <li><a href="/street_to_coords/new">Street &rarr; Coords</a></li>
+      <li><a href="/coords_to_weather/new">Coords &rarr; Weather</a></li>
+      <li><a href="/street_to_weather/new">Street &rarr; Weather</a></li>
+    </ul>
+  </nav>
 
-<%= yield %>
+  <%= yield %>
 
+  <div class="rails-toolbar">
+    <a href="/rails/git" target="_blank" class="rails-toolbar-button">
+      Git
+    </a>
+  </div>
 </body>
 </html>
