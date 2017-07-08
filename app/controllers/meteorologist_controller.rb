@@ -16,7 +16,7 @@ class MeteorologistController < ApplicationController
     # ==========================================================================
 
     url = "https://maps.googleapis.com/maps/api/geocode/json?address="
-    url = url + @street_address.gsub!(/ /, '+')
+    url = url + @street_address.gsub(" ", '+')
     parsed = JSON.parse(open(url).read)
     
     @latitude = parsed["results"][0]["geometry"]["location"]["lat"]

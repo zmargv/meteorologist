@@ -15,7 +15,8 @@ class GeocodingController < ApplicationController
     # The street address that the user typed is in the variable @street_address.
     # ==========================================================================
     
-    url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + @street_address.gsub!(/ /, '+')
+    url = "https://maps.googleapis.com/maps/api/geocode/json?address=" 
+    url = url + @street_address.gsub(" ", '+')
     parsed = JSON.parse(open(url).read)
     
     @latitude = parsed["results"][0]["geometry"]["location"]["lat"]
